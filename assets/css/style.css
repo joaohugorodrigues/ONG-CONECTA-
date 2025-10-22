@@ -1,0 +1,158 @@
+/*
+ * SISTEMA DE DESIGN - ONG CONECTA
+ * Entrega II - Estilização e Leiautes
+ *
+ * Objetivo: Aplicar um sistema de design coeso e responsivo,
+ * atendendo aos requisitos de variaveis, paleta, tipografia e espaçamento.
+ */
+
+/* ===========================================================================
+   1. SISTEMA DE CORES E VARIÁVEIS CSS CUSTOMIZADAS (Mínimo 8 Cores)
+   =========================================================================== */
+:root {
+    /* Cores Primárias (Verdes Ecológicos) */
+    --color-primary-dark: #186F3A;   /* Verde Oceano Escuro (Para Hover/Fundo) */
+    --color-primary: #1E8449;        /* Verde Oceano (Cor Principal) */
+    --color-primary-light: #3CB371;  /* Verde Menta Suave (Para Gradientes e Destaques) */
+
+    /* Cores Secundárias (Impacto e Alerta) */
+    --color-secondary-red: #E53E3E;  /* Vermelho de Alerta/Saúde */
+    --color-secondary-yellow: #F6AD55; /* Amarelo de Renda/Economia */
+    
+    /* Cores Neutras (Fundo, Texto e Bordas) */
+    --color-neutral-background: #E8F5E9; /* Fundo Suave (Natureza/Paz) */
+    --color-neutral-text: #1A202C;       /* Cor principal do texto (Escuro) */
+    --color-neutral-light: #F7FAFC;      /* Branco Suave (Fundo de Cards) */
+    --color-neutral-border: #CBD5E0;     /* Cinza para Bordas */
+
+    /* =======================================================================
+       2. TIPOGRAFIA HIERÁRQUICA (Mínimo 5 Tamanhos)
+       ======================================================================= */
+    --font-family: 'Inter', sans-serif;
+    
+    /* H1 - Títulos de Hero / Grande Destaque */
+    --font-size-h1: 3.5rem;   /* 56px (Desktop) */
+    
+    /* H2 - Títulos de Seção */
+    --font-size-h2: 2.25rem;  /* 36px */
+
+    /* H3 - Títulos de Componente/Card */
+    --font-size-h3: 1.5rem;   /* 24px */
+
+    /* Corpo - Texto principal */
+    --font-size-body: 1rem;    /* 16px */
+
+    /* Caption/Detalhe - Menus e textos de apoio */
+    --font-size-caption: 0.875rem; /* 14px */
+    
+    /* =======================================================================
+       3. SISTEMA DE ESPAÇAMENTO MODULAR (Base 8px)
+       ======================================================================= */
+    --spacing-1: 8px;   /* Pequeno */
+    --spacing-2: 16px;
+    --spacing-3: 24px;
+    --spacing-4: 32px;
+    --spacing-5: 48px;
+    --spacing-6: 64px;  /* Grande */
+
+    /* =======================================================================
+       4. BORDER-RADIUS
+       ======================================================================= */
+    --border-radius-base: 0.75rem; /* 12px */
+}
+
+/* Redefinicao básica para aplicar o sistema de design */
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-neutral-background);
+    color: var(--color-neutral-text);
+    line-height: 1.6;
+}
+
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
+
+/* Exemplo de media query para responsividade da tipografia */
+@media (max-width: 768px) {
+    :root {
+        --font-size-h1: 2.5rem; /* Reduz H1 em mobile */
+        --font-size-h2: 1.75rem;
+    }
+}
+
+
+/* ===========================================================================
+   5. COMPONENTES E UTILITÁRIOS BASE (PARA REFERÊNCIA NO HTML)
+   =========================================================================== */
+
+/* Classe para o container principal no HTML (usada para centralizar) */
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-2);
+    padding-right: var(--spacing-2);
+}
+
+/* Botão Primário */
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--border-radius-base);
+    font-weight: 600;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+}
+
+/* Cards de Conteúdo com Shadow/Hover */
+.content-card {
+    background-color: var(--color-neutral-light);
+    border-radius: var(--border-radius-base);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.content-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Grid Customizado (Para usar em conjunto com as classes Tailwind) */
+.grid-cols-custom {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--spacing-3); /* Gap de 24px */
+}
+
+/* Utility para Texto Primário */
+.text-primary-color {
+    color: var(--color-primary);
+}
+
+/* Utility para Fundo Secundário */
+.bg-secondary-color {
+    background-color: var(--color-secondary-yellow);
+}
+
+/* ===========================================================================
+   6. LAYOUTS RESPONSIVOS - PONTOS DE INTERRUPÇÃO
+   (O Tailwind já faz a maior parte, estas são para referência/customização)
+   =========================================================================== */
+/* Pontos de Interrupção */
+/* sm: 640px */
+/* md: 768px */
+/* lg: 1024px */
+/* xl: 1280px */
+/* 2xl: 1536px */
+
+/* Exemplo de Media Query customizada */
+@media (min-width: 768px) {
+    .p-md-spacing {
+        padding: var(--spacing-4); /* 32px de padding em telas médias */
+    }
+}
