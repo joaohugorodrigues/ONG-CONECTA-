@@ -4,56 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Início | ONG Conecta - Transformação e Inclusão Digital</title>
+    <!-- Link para o novo Sistema de Design CSS (assets/css/style.css) -->
     <link rel="stylesheet" href="assets/css/style.css">
     
-
-<meta name="description" content="Plataforma de impacto social que une tecnologia, sustentabilidade e capacitação profissional para ONGs e comunidades.">
+    <meta name="description" content="Plataforma de impacto social que une tecnologia, sustentabilidade e capacitação profissional para ONGs e comunidades.">
     
-
-<script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Paleta Natural e Harmoniosa */
+        /* Estilos embutidos minimos para inicializacao antes do CSS ser carregado */
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #E8F5E9; /* Verde muito suave (quase verde-água), paz e harmonia */
+            background-color: #E8F5E9;
         }
         .hero { 
-            /* Novo Gradiente orgânico: Verde Suave (#3CB371) para Verde Oceano (#1E8449) */
-            background-color: #1E8449; 
+            /* Gradiente orgânico: Verde Suave (#3CB371) para Verde Oceano (#1E8449) */
             background-image: linear-gradient(135deg, #3CB371 0%, #1E8449 100%); 
         } 
-        /* Efeito hover suave para acessibilidade e interatividade */
-        .card-shadow { transition: all 0.3s ease-in-out; }
-        .card-shadow:hover { box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3); transform: translateY(-3px); }
-
-        /* Cor Institucional Primária: Verde Oceano (Substituindo o Ciano) */
+        /* Cor Institucional Primária: Verde Oceano (Para botões e links) */
         .text-ong-primary { color: #1E8449; } 
-        .bg-ong-primary { background-color: #1E8449; }
-        .bg-ong-primary:hover { background-color: #186F3A; } /* Tom mais escuro para hover */
-        
-        /* Cor Institucional Secundária: Verde Vivo (Mantida) */
-        .text-ong-secondary { color: #4CAF50; } 
-        .bg-ong-secondary { background-color: #4CAF50; }
     </style>
 </head>
 <body>
     
 
-<header class="bg-white/90 backdrop-blur-sm shadow-xl sticky top-0 z-10" role="banner">
-        <nav class="container mx-auto p-4 flex justify-between items-center" role="navigation" aria-label="Menu Principal">
+<header class="bg-white/90 backdrop-blur-sm shadow-xl sticky top-0 z-50" role="banner">
+        <div class="container mx-auto p-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-extrabold text-ong-primary" aria-label="ONG Conecta - Página Inicial">ONG Conecta</a>
-            <ul role="menubar" class="flex space-x-4 md:space-x-6">
-                <li role="none"><a role="menuitem" href="index.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors border-b-2 border-transparent hover:border-ong-primary" aria-current="page">Início</a></li>
-                <li role="none"><a role="menuitem" href="projetos.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">Projetos</a></li>
-                <li role="none"><a role="menuitem" href="#parceiros" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">Nossos Parceiros</a></li>
-                <li role="none"><a role="menuitem" href="cadastro.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">Cadastre-se</a></li>
-                <li role="none">
+            
+            <!-- Botão Hambúrguer (Visível apenas em Mobile - max-width: 768px) -->
+            <button class="hamburger-button text-gray-700 p-2 rounded-md focus:outline-none" aria-label="Abrir Menu Principal" aria-expanded="false" onclick="toggleMenu()">
+                <svg id="icon-menu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <!-- Navegação Principal (Oculta em Mobile por CSS e JS) -->
+            <nav id="main-nav" class="hidden md:flex" role="navigation" aria-label="Menu Principal">
+                <ul role="menubar" class="flex space-x-4 md:space-x-6 items-center">
+                    <li role="none"><a role="menuitem" href="index.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors border-b-2 border-transparent hover:border-ong-primary" aria-current="page">Início</a></li>
                     
-
-<a role="menuitem" href="cadastro.html" class="text-white bg-ong-primary hover:bg-ong-primary-dark px-4 py-2 rounded-full font-semibold transition-colors shadow-md">Seja Voluntário</a>
-                </li>
-            </ul>
-        </nav>
+                    <!-- Item com Dropdown (Container com position: relative) -->
+                    <li role="none" class="dropdown-container relative">
+                        <button aria-expanded="false" aria-controls="projetos-submenu" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">
+                            Projetos
+                        </button>
+                        <ul id="projetos-submenu" role="menu" class="dropdown-menu">
+                            <li role="none"><a role="menuitem" href="projetos.html" class="dropdown-item">Nossos Projetos</a></li>
+                            <li role="none"><a role="menuitem" href="#" class="dropdown-item">Indicadores de Impacto</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li role="none"><a role="menuitem" href="#parceiros" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">Nossos Parceiros</a></li>
+                    <li role="none"><a role="menuitem" href="cadastro.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">Cadastre-se</a></li>
+                    <li role="none">
+                        <a role="menuitem" href="cadastro.html" class="btn-primary text-white bg-ong-primary hover:bg-ong-primary-dark px-4 py-2 rounded-full font-semibold transition-colors shadow-md">Seja Voluntário</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main id="main-content" role="main">
@@ -263,7 +270,9 @@
         </div>
     </footer>
 
-    <!-- Script para Calculadora de Impacto --><script>
+    <!-- Script para Calculadora de Impacto e Menu Mobile -->
+    <script>
+        // Função da Calculadora de Impacto
         function calcularImpacto() {
             const valorInput = document.getElementById('doacao-valor');
             const resultadoElement = document.getElementById('resultado-impacto');
@@ -293,6 +302,58 @@
 
             resultadoElement.innerHTML = impactoTexto.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
         }
+
+        // Função do Menu Hambúrguer (Mobile)
+        function toggleMenu() {
+            const nav = document.getElementById('main-nav');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
+            const isMenuOpen = nav.classList.toggle('menu-open');
+            
+            // Alterna os ícones do botão
+            iconMenu.classList.toggle('hidden', isMenuOpen);
+            iconClose.classList.toggle('hidden', !isMenuOpen);
+            
+            // Atualiza o atributo ARIA
+            document.querySelector('.hamburger-button').setAttribute('aria-expanded', isMenuOpen);
+
+            // Adiciona/remove evento de clique para fechar o menu ao clicar em um link
+            if (isMenuOpen) {
+                nav.addEventListener('click', closeMenuOnLinkClick);
+            } else {
+                nav.removeEventListener('click', closeMenuOnLinkClick);
+            }
+        }
+        
+        // Fecha o menu ao clicar em um link
+        function closeMenuOnLinkClick(event) {
+            if (event.target.tagName === 'A' || event.target.tagName === 'BUTTON') {
+                // Pequeno delay para permitir a navegação/ação antes de fechar
+                setTimeout(toggleMenu, 100); 
+            }
+        }
+
+        // Função do Dropdown Mobile
+        // Esta função permite que o link "Projetos" no mobile seja clicado para abrir o submenu
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownButton = document.querySelector('.dropdown-container button');
+            const dropdownContainer = document.querySelector('.dropdown-container');
+
+            if (dropdownButton) {
+                dropdownButton.addEventListener('click', function(e) {
+                    // Verifica se está em modo mobile (usando a media query do CSS como proxy)
+                    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+                    
+                    if (isMobile) {
+                        e.preventDefault(); // Impede a navegação padrão em mobile
+                        dropdownContainer.classList.toggle('active');
+                        const isExpanded = dropdownContainer.classList.contains('active');
+                        dropdownButton.setAttribute('aria-expanded', isExpanded);
+                    }
+                    // Em desktop, o hover funciona via CSS, então não faz nada aqui
+                });
+            }
+        });
 
         // Inicializar a calculadora no carregamento da página
         window.onload = function() {
