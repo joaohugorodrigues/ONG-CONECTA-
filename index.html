@@ -42,10 +42,12 @@
                 <ul role="menubar" class="flex space-x-4 md:space-x-6 items-center">
                     <li role="none"><a role="menuitem" href="index.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors border-b-2 border-transparent hover:border-ong-primary" aria-current="page">Início</a></li>
                     
-                    <!-- Item com Dropdown (Container com position: relative) -->
+                    <!-- Item com Dropdown (Agora apenas o texto "Projetos" no menu principal) -->
                     <li role="none" class="dropdown-container relative">
                         <button aria-expanded="false" aria-controls="projetos-submenu" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">
                             Projetos
+                            <!-- Ícone de seta para indicar dropdown -->
+                            <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <ul id="projetos-submenu" role="menu" class="dropdown-menu">
                             <li role="none"><a role="menuitem" href="projetos.html" class="dropdown-item">Nossos Projetos</a></li>
