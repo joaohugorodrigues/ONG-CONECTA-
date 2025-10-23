@@ -1,229 +1,207 @@
-/*
- * Sistema de Design da ONG Conecta
- * Foco: Usabilidade, Acessibilidade (WCAG) e Tema Sustentável
- * * Estrutura Modular:
- * - Variáveis de Cores, Tipografia e Espaçamento.
- * - Regras de Layout Principal (Grid/Flexbox).
- * - Estilos de Componentes (Botões, Cards, Menu Responsivo).
+/* * Sistema de Design da ONG Conecta - Entrega II e IV
+ * Foco: Responsividade, Acessibilidade (Modo Escuro/Contraste) e Identidade Visual.
+ *
+ * Paleta Primária: Verde Oceano (#1E8449)
+ * Paleta Secundária: Verde Vivo (#4CAF50)
+ * Paleta Neutra: Fundo Suave (#E8F5E9) e Neutro Escuro (#1f2937)
+ * Tipografia: Inter
  */
 
-/* ====================================
-   1. Variáveis Customizadas (Sistema de Design)
-   ==================================== */
 :root {
-    /* Paleta de Cores */
-    --color-primary: #1E8449; /* Verde Oceano (Forte, Institucional) */
-    --color-primary-dark: #186F3A; 
-    --color-secondary: #4CAF50; /* Verde Vivo (Destaque) */
-    --color-background-light: #E8F5E9; /* Fundo Suave (Verde-água claro) */
-    --color-text-dark: #3C3C3C; /* Texto Principal */
-    --color-text-light: #fefefe;
+    /* Cores Institucionais */
+    --color-primary: #1E8449; /* Verde Oceano (Principal) */
+    --color-primary-dark: #186F3A; /* Verde Oceano Escuro (Hover) */
+    --color-secondary: #4CAF50; /* Verde Vivo */
+    --color-white: #ffffff;
+    --color-dark: #1f2937;
+    
+    /* Cores de Ação e Feedback */
+    --color-error: #E53E3E; /* Vermelho */
+    --color-link: #3b82f6; /* Azul */
 
-    /* Tipografia */
-    --font-family-primary: 'Inter', sans-serif;
-    --font-size-base: 1rem;
-    --font-size-h1: 3.5rem; /* 56px (Desktop) */
-    --font-size-h2: 2.5rem; /* 40px */
-    --font-size-h3: 1.5rem; /* 24px */
+    /* Neutros e Fundo */
+    --color-bg-light: #E8F5E9; /* Fundo principal suave */
+    --color-bg-card: #ffffff;
+    --color-text-base: #3C3C3C;
+    --color-border-light: #d1d5db;
 
-    /* Espaçamento Modular (Base 8px) */
-    --spacing-1: 8px;
-    --spacing-2: 16px;
-    --spacing-3: 24px;
-    --spacing-4: 32px;
-    --spacing-5: 48px;
-    --spacing-6: 64px;
+    /* Tipografia (5 tamanhos) */
+    --font-size-xs: 0.75rem; /* 12px */
+    --font-size-sm: 0.875rem; /* 14px */
+    --font-size-md: 1rem; /* 16px (Base) */
+    --font-size-lg: 1.25rem; /* 20px */
+    --font-size-xl: 1.5rem; /* 24px */
+    --font-size-xxl: 2.25rem; /* 36px (H1) */
+
+    /* Espaçamento Modular (Múltiplos de 8px) */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    --spacing-xxl: 64px;
+
+    /* Transição para Modo Escuro */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
-/* Reset básico e tipografia */
+/* ========================================================
+   MODO ESCURO / ALTO CONTRASTE (WCAG 2.1 AA)
+   ======================================================== */
+.dark-mode {
+    --color-bg-light: #121212; /* Fundo Escuro Profundo */
+    --color-bg-card: #1f2937; /* Cartões mais escuros */
+    --color-text-base: #f3f4f6; /* Texto muito claro */
+    --color-border-light: #4b5563;
+    
+    /* Cores de Destaque no Modo Escuro */
+    --color-primary: #3CB371; /* Verde Suave (Para maior contraste no escuro) */
+    --color-primary-dark: #2c9a60;
+    --color-link: #60a5fa; /* Azul mais claro para links */
+}
+
+/* ========================================================
+   REGRAS BASE GLOBAIS
+   ======================================================== */
+
 body {
-    font-family: var(--font-family-primary);
-    background-color: var(--color-background-light);
-    color: var(--color-text-dark);
+    background-color: var(--color-bg-light);
+    color: var(--color-text-base);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
 }
 
-h1, h2, h3, h4 {
-    color: var(--color-text-dark);
-    font-weight: 700;
-}
-
-/* Classes de Cores Dinâmicas */
+/* Classes institucionais para reuso */
 .text-ong-primary { color: var(--color-primary); } 
 .bg-ong-primary { background-color: var(--color-primary); }
-.bg-ong-primary:hover { background-color: var(--color-primary-dark); }
-.text-ong-secondary { color: var(--color-secondary); } 
+.bg-ong-primary:hover { background-color: var(--color-primary-dark); } 
 
-/* ====================================
-   2. Layout e Componentes
-   ==================================== */
-
-/* Hero Section com Gradiente Orgânico */
-.hero { 
-    background-color: var(--color-primary); 
-    background-image: linear-gradient(135deg, #3CB371 0%, var(--color-primary) 100%); 
-} 
-
-/* Cards de Destaque com Sombra Interativa */
-.card-shadow { 
-    transition: all 0.3s ease-in-out; 
-    border-radius: 0.75rem; /* Tailwind rounded-xl */
-}
-.card-shadow:hover { 
-    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3); /* Sombra forte ao passar o mouse */
-    transform: translateY(-3px); /* Leve levantamento */
+/* Reset e Box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
-/* Botões (Requisito: Estados visuais) */
+/* Estilo para links de botões primários */
 .btn-primary {
     background-color: var(--color-primary);
-    color: var(--color-text-light);
-    padding: var(--spacing-2) var(--spacing-4);
-    border-radius: 9999px; /* rounded-full */
+    color: var(--color-white);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--spacing-sm);
     font-weight: 600;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    text-align: center;
+    text-decoration: none;
 }
 .btn-primary:hover {
     background-color: var(--color-primary-dark);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.btn-primary:focus {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 3px;
 }
 
-/* ====================================
-   3. Navegação (Responsividade e Dropdown)
-   ==================================== */
+/* Efeito Hover em Cards (Usando a variavel de transicao) */
+.card-shadow:hover {
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3); 
+    transform: translateY(-3px); 
+}
 
-/* Oculta o botão hambúrguer no desktop */
+/* ========================================================
+   TIPOGRAFIA HIERÁRQUICA (Exemplo de uso das variáveis)
+   ======================================================== */
+h1 { font-size: var(--font-size-xxl); font-weight: 800; }
+h2 { font-size: var(--font-size-xl); font-weight: 700; }
+h3 { font-size: var(--font-size-lg); font-weight: 600; }
+
+/* ========================================================
+   NAVEGAÇÃO AVANÇADA E RESPONSIVA
+   ======================================================== */
+
+/* Esconde o menu hambúrguer no desktop */
 .hamburger-button {
-    display: none;
+    display: block; /* Visível no mobile por padrao */
+}
+@media (min-width: 768px) {
+    .hamburger-button {
+        display: none; /* Escondido no desktop */
+    }
+    #main-nav {
+        display: flex !important; /* Sempre visível no desktop */
+    }
 }
 
-/* Estilo do Dropdown (Desktop - via CSS hover) */
+/* Estilo para o menu lateral em telas pequenas */
+#main-nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Inicialmente fora da tela */
+    height: 100vh;
+    width: 75%;
+    max-width: 300px;
+    background-color: var(--color-bg-card);
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-in-out;
+    flex-direction: column;
+    padding-top: var(--spacing-xl);
+}
+#main-nav.menu-open {
+    right: 0; /* Move para a tela quando aberto */
+}
+#main-nav ul {
+    flex-direction: column;
+    padding: var(--spacing-sm);
+    width: 100%;
+}
+#main-nav ul li {
+    width: 100%;
+    margin-bottom: var(--spacing-xs);
+    text-align: left;
+}
+
+/* Estilo do Dropdown (Submenu) */
 .dropdown-container {
     position: relative;
 }
 .dropdown-menu {
+    display: none;
     position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: white;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     min-width: 200px;
-    z-index: 20;
-    opacity: 0; /* Começa invisível */
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border-light);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 60;
     padding: 0;
-    margin-top: 8px;
     list-style: none;
+    margin: 0;
 }
+
+/* Dropdown visível em Desktop (Hover) */
 .dropdown-container:hover .dropdown-menu {
-    opacity: 1; /* Visível no hover */
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
+    display: block;
 }
+
+/* Estilo para o link do dropdown */
 .dropdown-item {
     display: block;
-    padding: 12px 16px;
+    padding: 10px 15px;
     text-decoration: none;
-    color: var(--color-text-dark);
-    font-weight: 500;
-    transition: background-color 0.2s;
-    width: 100%; /* Força o item a ocupar toda a largura */
+    color: var(--color-text-base);
 }
-.dropdown-menu a:hover {
-    background-color: #f3f4f6;
+.dropdown-item:hover {
+    background-color: var(--color-bg-light);
     color: var(--color-primary);
 }
 
-
-/* ====================================
-   4. Media Queries (Mobile First)
-   ==================================== */
-
-/* Regras para Mobile (Tamanho < 768px - Visibilidade do Menu) */
+/* Regras específicas para Mobile (Menu Vertical) */
 @media (max-width: 767px) {
-    
-    /* 4.1. Menu Mobile (Hambúrguer) */
-    .hamburger-button {
-        display: block; /* Mostra o botão no mobile */
-        z-index: 60; /* Acima de tudo */
-    }
-
-    /* 4.2. Navegação Lateral */
-    #main-nav {
-        /* Posição fora da tela */
-        position: fixed;
-        top: 0;
-        right: -100%; /* Inicialmente fora da tela */
-        width: 70%; 
-        max-width: 300px;
-        height: 100%;
-        background-color: #fefefe;
-        box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
-        padding-top: 80px; /* Abaixo do header */
-        transition: right 0.3s ease-in-out;
-        flex-direction: column;
-        z-index: 50;
-        display: none !important; /* Início escondido, JS controla a transição 'right' */
-    }
-    
-    /* Classe adicionada pelo JS para exibir o menu */
-    .menu-open {
-        right: 0 !important;
-        display: flex !important;
-    }
-    
-    /* Estilização da lista de links no mobile */
-    #main-nav ul {
-        flex-direction: column;
-        width: 100%;
-        padding: var(--spacing-4);
-        align-items: flex-start;
-    }
-
-    #main-nav li {
-        width: 100%;
-        margin-bottom: var(--spacing-2);
-        border-bottom: 1px solid #f0f0f0;
-        padding-bottom: var(--spacing-1);
-    }
-    
-    /* Dropdown no Mobile (Comportamento de Acordeão) */
-    .dropdown-container .dropdown-menu {
-        position: static; /* Ocupa o fluxo normal */
-        opacity: 1; 
-        visibility: visible;
-        transform: none;
+    .dropdown-menu {
+        position: static; /* Ocupa o espaco normalmente no fluxo mobile */
         border: none;
         box-shadow: none;
         background-color: transparent;
-        padding: 0;
-        max-height: 0; /* Acordeão começa fechado */
-        overflow: hidden;
-        transition: max-height 0.3s ease-in-out;
+        margin-left: var(--spacing-sm);
     }
-    
-    /* Ativo no Mobile */
     .dropdown-container.active .dropdown-menu {
-        max-height: 200px; /* Altura máxima para abrir o acordeão */
-        padding-top: 8px;
+        display: block; /* JS controla o active para abrir o submenu */
     }
-
-    .dropdown-container button {
-        display: block;
-        width: 100%;
-        text-align: left;
-        padding: 8px 0;
-    }
-    
-    .dropdown-menu .dropdown-item {
-        padding: 8px 16px 8px 32px; /* Recuo extra para subitem */
+    .dropdown-container .dropdown-menu .dropdown-item {
+        padding: 5px 15px;
+        font-size: var(--font-size-sm);
     }
 }
