@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projetos e Doações | ONG Conecta</title>
+    <title>Projetos | ONG Conecta - Impacto e Doações</title>
+    <!-- Link para o Sistema de Design CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     
-    <meta name="description" content="Conheça os projetos sociais da ONG Conecta e veja como doar ou se voluntariar.">
+    <meta name="description" content="Conheça os projetos ativos da ONG Conecta, veja nosso impacto e faça sua doação online.">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -15,9 +16,6 @@
             font-family: 'Inter', sans-serif; 
             background-color: #E8F5E9;
         }
-        .hero { 
-            background-image: linear-gradient(135deg, #3CB371 0%, #1E8449 100%); 
-        } 
         .text-ong-primary { color: #1E8449; } 
     </style>
 </head>
@@ -28,7 +26,7 @@
             <a href="index.html" class="text-2xl font-extrabold text-ong-primary" aria-label="ONG Conecta - Página Inicial">ONG Conecta</a>
             
             <!-- Botão Hambúrguer -->
-            <button class="hamburger-button text-gray-700 p-2 rounded-md focus:outline-none" aria-label="Abrir Menu Principal" aria-expanded="false" onclick="toggleMenu()">
+            <button class="hamburger-button text-gray-700 p-2 rounded-md focus:outline-none md:hidden" aria-label="Abrir Menu Principal" aria-expanded="false" onclick="toggleMenu()">
                 <svg id="icon-menu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
@@ -40,16 +38,17 @@
                     
                     <!-- Item com Dropdown -->
                     <li role="none" class="dropdown-container relative">
-                        <button aria-expanded="true" aria-controls="projetos-submenu" class="text-gray-700 hover:text-ong-primary font-bold transition-colors border-b-2 border-ong-primary" aria-current="page">
+                        <button aria-expanded="false" aria-controls="projetos-submenu" class="text-gray-700 hover:text-ong-primary font-bold transition-colors border-b-2 border-ong-primary">
                             Projetos
+                            <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
-                        <ul id="projetos-submenu" role="menu" class="dropdown-menu block md:absolute">
-                            <li role="none"><a role="menuitem" href="projetos.html" class="dropdown-item">Nossos Projetos</a></li>
+                        <ul id="projetos-submenu" role="menu" class="dropdown-menu">
+                            <li role="none"><a role="menuitem" href="projetos.html" class="dropdown-item" aria-current="page">Nossos Projetos</a></li>
                             <li role="none"><a role="menuitem" href="#" class="dropdown-item">Indicadores de Impacto</a></li>
                         </ul>
                     </li>
                     
-                    <li role="none"><a role="menuitem" href="#parceiros" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">Nossos Parceiros</a></li>
+                    <li role="none"><a role="menuitem" href="parceiros.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">Nossos Parceiros</a></li>
                     <li role="none"><a role="menuitem" href="cadastro.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">Cadastre-se</a></li>
                     <li role="none">
                         <a role="menuitem" href="cadastro.html" class="btn-primary text-white bg-ong-primary hover:bg-ong-primary-dark px-4 py-2 rounded-full font-semibold transition-colors shadow-md">Seja Voluntário</a>
@@ -62,84 +61,74 @@
     <main id="main-content" role="main" class="py-16">
         <div class="container mx-auto px-4">
             
-            <section id="lista-projetos" class="mb-16" role="region" aria-labelledby="projetos-titulo">
-                <h1 id="projetos-titulo" class="text-4xl font-extrabold text-center mb-4 text-gray-800">Projetos de Transformação Social</h1>
-                <p class="text-center max-w-3xl mx-auto mb-12 text-gray-600">Conheça as iniciativas que estamos desenvolvendo e o impacto que geramos no Terceiro Setor e nas comunidades brasileiras.</p>
+            <h1 class="text-4xl font-extrabold text-center mb-4 text-gray-800">Projetos Ativos e Nossas Metas</h1>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-gray-600">Veja como sua contribuição se transforma em impacto real nas comunidades que apoiamos.</p>
+            
+            <!-- Grid de Projetos Responsivo -->
+            <section id="lista-projetos" class="grid lg:grid-cols-3 md:grid-cols-2 gap-8" role="region" aria-labelledby="projetos-ativos-titulo">
                 
-                <!-- Layout Responsivo com Grid e Flexbox -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <!-- Card de Projeto 1: Inclusão Digital -->
-                    <article class="content-card p-6 border-t-4 border-ong-primary" role="article" aria-labelledby="proj1-titulo">
-                        <h3 id="proj1-titulo" class="text-2xl font-bold text-ong-primary mb-3">Programa Tech-Acessível</h3>
-                        <p class="text-gray-600 mb-4">Focado na doação de dispositivos recondicionados e aulas de informática básica para idosos e comunidades rurais, combatendo a exclusão digital.</p>
-                        <div class="flex items-center space-x-2 mb-4">
-                            <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">#Inclusão</span>
-                            <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">#Educação</span>
+                <!-- Projeto 1: Inclusão Digital na Terceira Idade -->
+                <article class="bg-white p-6 rounded-xl shadow-2xl card-shadow border-t-4 border-ong-primary" role="article" aria-labelledby="projeto1-titulo">
+                    <h2 id="projeto1-titulo" class="text-2xl font-bold text-ong-primary mb-2">Inclusão Digital 60+</h2>
+                    <p class="text-gray-600 mb-4">Cursos de informática básica e uso de smartphones para idosos, combatendo o isolamento social.</p>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-700">Meta: 500 alunos/ano</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                            <div class="bg-ong-primary h-2.5 rounded-full" style="width: 75%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <div class="text-sm font-semibold text-gray-700">Meta: 85% Alcançada</div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
-                            <div class="bg-ong-primary h-2.5 rounded-full" style="width: 85%"></div>
-                        </div>
-                        <a href="#" class="block mt-4 text-center btn-primary">Detalhes e Voluntariado</a>
-                    </article>
-                    
-                    <!-- Card de Projeto 2: Sustentabilidade/TI Verde -->
-                    <article class="content-card p-6 border-t-4 border-ong-secondary" role="article" aria-labelledby="proj2-titulo">
-                        <h3 id="proj2-titulo" class="text-2xl font-bold text-ong-secondary mb-3">Logística Reversa Verde</h3>
-                        <p class="text-gray-600 mb-4">Criação de pontos de coleta de lixo eletrônico em parceria com escolas e ONGs, promovendo o descarte correto e a TI Verde.</p>
-                        <div class="flex items-center space-x-2 mb-4">
-                            <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">#Sustentabilidade</span>
-                            <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">#MeioAmbiente</span>
-                        </div>
-                        <div class="text-sm font-semibold text-gray-700">Meta: 40% Alcançada</div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
-                            <div class="bg-ong-secondary h-2.5 rounded-full" style="width: 40%"></div>
-                        </div>
-                        <a href="#" class="block mt-4 text-center btn-primary">Detalhes e Doação</a>
-                    </article>
+                        <p class="text-sm text-gray-500 mt-1">75% concluído</p>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-sm font-semibold text-gray-800">Capacitação</span>
+                        <a href="cadastro.html" class="text-white bg-ong-primary text-sm px-3 py-1 rounded-full hover:bg-ong-primary-dark transition-colors">Doar Agora</a>
+                    </div>
+                </article>
 
-                    <!-- Card de Projeto 3: Empreendedorismo -->
-                    <article class="content-card p-6 border-t-4 border-yellow-500" role="article" aria-labelledby="proj3-titulo">
-                        <h3 id="proj3-titulo" class="text-2xl font-bold text-yellow-600 mb-3">Micro-Negócios Digitais</h3>
-                        <p class="text-gray-600 mb-4">Mentoria e cursos para microempreendedores de baixa renda sobre vendas online, marketing digital e formalização MEI.</p>
-                        <div class="flex items-center space-x-2 mb-4">
-                            <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">#Empreendedorismo</span>
-                            <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">#RendaExtra</span>
+                <!-- Projeto 2: Horta Comunitária Inteligente -->
+                <article class="bg-white p-6 rounded-xl shadow-2xl card-shadow border-t-4 border-ong-secondary" role="article" aria-labelledby="projeto2-titulo">
+                    <h2 id="projeto2-titulo" class="text-2xl font-bold text-ong-secondary mb-2">Horta Comunitária Inteligente</h2>
+                    <p class="text-gray-600 mb-4">Uso de IoT (simulado) para monitorar umidade e temperatura em hortas urbanas, promovendo sustentabilidade.</p>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-700">Meta: 4 hortas ativas</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                            <div class="bg-ong-secondary h-2.5 rounded-full" style="width: 50%" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <div class="text-sm font-semibold text-gray-700">Meta: 60% Alcançada</div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
-                            <div class="bg-yellow-600 h-2.5 rounded-full" style="width: 60%"></div>
+                        <p class="text-sm text-gray-500 mt-1">50% concluído</p>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-sm font-semibold text-gray-800">Sustentabilidade</span>
+                        <a href="cadastro.html" class="text-white bg-ong-secondary text-sm px-3 py-1 rounded-full hover:bg-ong-secondary-dark transition-colors">Voluntariado</a>
+                    </div>
+                </article>
+                
+                <!-- Projeto 3: Portal de Direitos Cívicos -->
+                <article class="bg-white p-6 rounded-xl shadow-2xl card-shadow border-t-4 border-indigo-500" role="article" aria-labelledby="projeto3-titulo">
+                    <h2 id="projeto3-titulo" class="text-2xl font-bold text-indigo-500 mb-2">Portal de Direitos Cívicos</h2>
+                    <p class="text-gray-600 mb-4">Desenvolvimento de uma interface simples para acesso a informações sobre documentos e serviços públicos essenciais.</p>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-700">Meta: Lançamento em 3 meses</p>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-2">
+                            <div class="bg-indigo-500 h-2.5 rounded-full" style="width: 90%" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <a href="#" class="block mt-4 text-center btn-primary">Detalhes e Apoio</a>
-                    </article>
+                        <p class="text-sm text-gray-500 mt-1">90% concluído</p>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-sm font-semibold text-gray-800">Desenvolvimento</span>
+                        <a href="cadastro.html" class="text-white bg-indigo-500 text-sm px-3 py-1 rounded-full hover:bg-indigo-600 transition-colors">Ver Detalhes</a>
+                    </div>
+                </article>
 
-                </div>
             </section>
             
-            <section id="doacao" class="bg-white p-10 rounded-xl shadow-2xl mt-16" role="region" aria-labelledby="doacao-titulo">
-                <h2 id="doacao-titulo" class="text-3xl font-bold text-center mb-8 text-gray-800">Faça Sua Doação e Transforme Vidas</h2>
-                <div class="max-w-xl mx-auto">
-                    <p class="text-gray-600 text-center mb-6">Sua contribuição garante a continuidade dos nossos projetos de capacitação e inclusão digital nas comunidades mais necessitadas.</p>
-                    
-                    <form action="#" method="POST" class="space-y-4">
-                        <fieldset class="border border-gray-300 p-4 rounded-lg">
-                            <legend class="font-semibold text-lg text-ong-primary px-2">Valor da Doação</legend>
-                            <label for="valor-doacao" class="block mt-2 font-medium text-gray-700">R$</label>
-                            <input type="number" id="valor-doacao" name="valor-doacao" value="50.00" min="10.00" step="5.00" required class="form-input w-full p-3 border-2 border-gray-300 rounded-lg text-2xl font-bold focus:border-ong-primary" aria-label="Valor da doação em Reais">
-                        </fieldset>
-                        
-                        <fieldset class="border border-gray-300 p-4 rounded-lg">
-                            <legend class="font-semibold text-lg text-ong-primary px-2">Informações Pessoais</legend>
-                            <label for="nome" class="block mt-2 font-medium text-gray-700">Nome Completo</label>
-                            <input type="text" id="nome" name="nome" required class="w-full p-2 border rounded-md focus:border-ong-primary">
-                        </fieldset>
-                        
-                        <button type="submit" class="w-full bg-ong-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-ong-primary-dark transition-colors text-lg shadow-md">
-                            Doar Agora e Gerar Impacto
-                        </button>
-                    </form>
-                </div>
+            <!-- Chamada para Doação na Página de Projetos -->
+            <section id="chamada-doacao" class="mt-16 bg-ong-primary/10 p-10 rounded-xl text-center shadow-lg" role="region" aria-labelledby="doacao-titulo">
+                <h2 id="doacao-titulo" class="text-3xl font-bold text-gray-800 mb-4">Ajude a Realizar o Próximo Projeto!</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
+                    Seu apoio financeiro garante que possamos atingir as metas de impacto em todas as comunidades. Clique e saiba como sua doação faz a diferença.
+                </p>
+                <a href="cadastro.html" class="inline-block bg-ong-primary text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-ong-primary-dark transition-colors shadow-xl">
+                    Fazer Doação
+                </a>
             </section>
 
         </div>
@@ -153,45 +142,8 @@
         </div>
     </footer>
 
-    <!-- Script para Menu Mobile e Dropdown (Duplicado em todos os HTMLs) -->
-    <script>
-        function toggleMenu() {
-            const nav = document.getElementById('main-nav');
-            const iconMenu = document.getElementById('icon-menu');
-            const iconClose = document.getElementById('icon-close');
-            const isMenuOpen = nav.classList.toggle('menu-open');
-            
-            iconMenu.classList.toggle('hidden', isMenuOpen);
-            iconClose.classList.toggle('hidden', !isMenuOpen);
-            document.querySelector('.hamburger-button').setAttribute('aria-expanded', isMenuOpen);
+    <!-- Script para Menu Mobile e Dropdown (Estrutura copiada do index.html) -->
+    <script src="assets/js/app.js"></script>
 
-            if (isMenuOpen) {
-                // Adiciona a classe que move o menu na tela (definida no CSS)
-                nav.style.right = '0';
-            } else {
-                nav.style.right = '-100%';
-            }
-        }
-        
-        // Função para o Dropdown em Mobile (que não é via hover)
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownButton = document.querySelector('.dropdown-container button');
-            const dropdownContainer = document.querySelector('.dropdown-container');
-
-            if (dropdownButton) {
-                dropdownButton.addEventListener('click', function(e) {
-                    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-                    
-                    if (isMobile) {
-                        // Permite que o link "Projetos" seja clicado para abrir o submenu no mobile
-                        e.preventDefault(); 
-                        dropdownContainer.classList.toggle('active');
-                        const isExpanded = dropdownContainer.classList.contains('active');
-                        dropdownButton.setAttribute('aria-expanded', isExpanded);
-                    }
-                });
-            }
-        });
-    </script>
 </body>
 </html>
