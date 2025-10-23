@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parceiros | ONG Conecta - Colaboração e Rede de Apoio</title>
+    <!-- Link para o Sistema de Design CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <meta name="description" content="Conheça os parceiros e colaboradores que nos ajudam a construir um futuro mais inclusivo e sustentável.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos embutidos mínimos para inicialização (usados em todos os HTMLs) */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #E8F5E9;
+        }
+        .text-ong-primary { color: #1E8449; } /* Verde Oceano */
+        .card-shadow { transition: all 0.3s ease-in-out; }
+        .card-shadow:hover { box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3); transform: translateY(-3px); }
+    </style>
+</head>
+<body>
+    
+    <!-- HEADER e NAVEGAÇÃO (Estrutura copiada do index.html) -->
+    <header class="bg-white/90 backdrop-blur-sm shadow-xl sticky top-0 z-50" role="banner">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-extrabold text-ong-primary" aria-label="ONG Conecta - Página Inicial">ONG Conecta</a>
+            
+            <!-- Botão Hambúrguer (Visível apenas em Mobile - max-width: 768px) -->
+            <button class="hamburger-button text-gray-700 p-2 rounded-md focus:outline-none" aria-label="Abrir Menu Principal" aria-expanded="false" onclick="toggleMenu()">
+                <svg id="icon-menu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <!-- Navegação Principal (Oculta em Mobile por CSS e JS) -->
+            <nav id="main-nav" class="hidden md:flex" role="navigation" aria-label="Menu Principal">
+                <ul role="menubar" class="flex space-x-4 md:space-x-6 items-center">
+                    <li role="none"><a role="menuitem" href="index.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors border-b-2 border-transparent hover:border-ong-primary">Início</a></li>
+                    
+                    <!-- Item com Dropdown -->
+                    <li role="none" class="dropdown-container relative">
+                        <button aria-expanded="false" aria-controls="projetos-submenu" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">
+                            Projetos
+                            <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <ul id="projetos-submenu" role="menu" class="dropdown-menu">
+                            <li role="none"><a role="menuitem" href="projetos.html" class="dropdown-item">Nossos Projetos</a></li>
+                            <li role="none"><a role="menuitem" href="#" class="dropdown-item">Indicadores de Impacto</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li role="none"><a role="menuitem" href="parceiros.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors border-b-2 border-ong-primary" aria-current="page">Nossos Parceiros</a></li>
+                    <li role="none"><a role="menuitem" href="cadastro.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">Cadastre-se</a></li>
+                    <li role="none">
+                        <a role="menuitem" href="cadastro.html" class="btn-primary text-white bg-ong-primary hover:bg-ong-primary-dark px-4 py-2 rounded-full font-semibold transition-colors shadow-md">Seja Voluntário</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" role="main" class="py-16">
+        <div class="container mx-auto px-4">
+            
+            <!-- Título Principal da Página -->
+            <h1 class="text-5xl font-extrabold text-center mb-4 text-gray-800">Construindo Juntos: Nossos Parceiros</h1>
+            <p class="text-center max-w-4xl mx-auto mb-12 text-gray-600 text-xl">
+                Nossa missão de inclusão digital e sustentabilidade é impulsionada por uma rede de colaboradores que compartilham nossa visão.
+            </p>
+            
+            <!-- Seção de Parceiros em Destaque -->
+            <section id="parceiros-destaque" class="grid lg:grid-cols-2 gap-10 mt-10" role="region" aria-labelledby="destaque-titulo">
+                
+                <!-- Card de Destaque: Conecta+ SPA -->
+                <div class="bg-white p-8 rounded-xl shadow-2xl card-shadow border-t-4 border-ong-primary">
+                    <h2 class="text-3xl font-bold text-ong-primary mb-3" id="destaque-titulo">🌟 Projeto Conecta+ SPA (Inclusão Digital)</h2>
+                    <p class="text-gray-600 mb-4">
+                        O **Conecta+ SPA** é nosso parceiro fundamental em **inovação e prova de conceito digital**. Ele foi desenvolvido para simular e analisar interativamente o Canvas de Impacto Social da ONG Conecta.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-1 ml-4 mb-6">
+                        <li>**Foco:** Criação de soluções acessíveis e robustas em Front-end.</li>
+                        <li>**Impacto:** Demonstração prática do uso de dados e tecnologia para o Terceiro Setor.</li>
+                        <li>**Tecnologias:** HTML5, CSS (Tailwind CSS), JavaScript e Chart.js.</li>
+                    </ul>
+                    <a href="https://joaohugorodrigues.github.io/conecta-plus-spa01/" target="_blank" class="inline-block bg-ong-primary text-white px-6 py-2 rounded-full font-semibold hover:bg-ong-primary-dark transition-colors shadow-md" aria-label="Visitar o projeto Conecta+ SPA">
+                        Visitar o Projeto Parceiro
+                    </a>
+                </div>
+
+                <!-- Card de Chamada para Patrocínio (AGORA COM LINKEDIN) -->
+                <div class="bg-white p-8 rounded-xl shadow-2xl card-shadow border-t-4 border-gray-500">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-3">🤝 Seja Nosso Próximo Parceiro</h2>
+                    <p class="text-gray-600 mb-4">
+                        Sua empresa ou organização pode impulsionar a inclusão digital e a sustentabilidade. Buscamos parceiros estratégicos que compartilhem nossa visão de impacto social.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 space-y-1 ml-4 mb-6">
+                        <li>**Doação de Tempo (Voluntariado):** Oferecer horas de mentoria em TI.</li>
+                        <li>**Apoio Financeiro:** Patrocinar módulos de capacitação.</li>
+                        <li>**Logística Reversa:** Ajudar no descarte e reutilização de equipamentos eletrônicos.</li>
+                    </ul>
+                    <a href="https://www.linkedin.com/in/joaohugorodrigues/" target="_blank" class="inline-block bg-gray-700 text-white px-6 py-2 rounded-full font-semibold hover:bg-gray-800 transition-colors shadow-md" aria-label="Entre em contato para parceria - LinkedIn">
+                        Entre em Contato (LinkedIn)
+                    </a>
+                </div>
+
+            </section>
+            
+            <!-- NOVA SEÇÃO: VISÃO DE FUTURO -->
+            <section id="visao-futuro" class="mt-16 bg-gray-100 p-8 rounded-xl shadow-inner text-center" role="region" aria-labelledby="visao-titulo">
+                <h2 id="visao-titulo" class="text-4xl font-extrabold text-gray-800 mb-4">Visão de Futuro</h2>
+                <p class="text-xl text-gray-600 max-w-4xl mx-auto">
+                    Nosso objetivo é ser a **plataforma de referência nacional** na articulação entre tecnologia, o Terceiro Setor e a inclusão digital, garantindo que o futuro seja **acessível, equitativo e sustentável** para todos os cidadãos brasileiros.
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 text-center" role="contentinfo">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 ONG Conecta. Todos os direitos reservados. | 
+                <a href="#" class="text-blue-300 hover:underline" aria-label="Acessar Termos de Uso">Termos de Uso</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Script para Menu Mobile e Dropdown (Estrutura copiada do index.html) -->
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('main-nav');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
+            const isMenuOpen = nav.classList.toggle('menu-open');
+            
+            iconMenu.classList.toggle('hidden', isMenuOpen);
+            iconClose.classList.toggle('hidden', !isMenuOpen);
+            document.querySelector('.hamburger-button').setAttribute('aria-expanded', isMenuOpen);
+
+            if (isMenuOpen) {
+                nav.style.right = '0';
+            } else {
+                nav.style.right = '-100%';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownButton = document.querySelector('.dropdown-container button');
+            const dropdownContainer = document.querySelector('.dropdown-container');
+
+            if (dropdownButton) {
+                dropdownButton.addEventListener('click', function(e) {
+                    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+                    
+                    if (isMobile) {
+                        e.preventDefault(); 
+                        dropdownContainer.classList.toggle('active');
+                        const isExpanded = dropdownContainer.classList.contains('active');
+                        dropdownButton.setAttribute('aria-expanded', isExpanded);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
