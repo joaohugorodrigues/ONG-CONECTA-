@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro | ONG Conecta - Voluntários e Membros</title>
+    <!-- Link para o Sistema de Design CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     
     <meta name="description" content="Faça seu cadastro para se tornar um voluntário ou membro de apoio na ONG Conecta.">
@@ -19,12 +20,15 @@
             background-image: linear-gradient(135deg, #3CB371 0%, #1E8449 100%); 
         } 
         .text-ong-primary { color: #1E8449; } 
-        /* Estilização para validação nativa */
-        input:invalid:required {
+        /* Estilização para validação nativa e JS */
+        input.is-invalid {
             border-color: #E53E3E !important; /* Vermelho */
+            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.2);
         }
-        input:focus:invalid {
-            box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.5);
+        .validation-message {
+            font-size: 0.875rem;
+            color: #E53E3E;
+            margin-top: 0.25rem;
         }
     </style>
 </head>
@@ -35,7 +39,7 @@
             <a href="index.html" class="text-2xl font-extrabold text-ong-primary" aria-label="ONG Conecta - Página Inicial">ONG Conecta</a>
             
             <!-- Botão Hambúrguer -->
-            <button class="hamburger-button text-gray-700 p-2 rounded-md focus:outline-none" aria-label="Abrir Menu Principal" aria-expanded="false" onclick="toggleMenu()">
+            <button class="hamburger-button text-gray-700 p-2 rounded-md focus:outline-none md:hidden" aria-label="Abrir Menu Principal" aria-expanded="false" onclick="toggleMenu()">
                 <svg id="icon-menu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
@@ -49,6 +53,7 @@
                     <li role="none" class="dropdown-container relative">
                         <button aria-expanded="false" aria-controls="projetos-submenu" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">
                             Projetos
+                            <svg class="w-4 h-4 inline-block ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </button>
                         <ul id="projetos-submenu" role="menu" class="dropdown-menu">
                             <li role="none"><a role="menuitem" href="projetos.html" class="dropdown-item">Nossos Projetos</a></li>
@@ -56,7 +61,7 @@
                         </ul>
                     </li>
                     
-                    <li role="none"><a role="menuitem" href="#parceiros" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">Nossos Parceiros</a></li>
+                    <li role="none"><a role="menuitem" href="parceiros.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">Nossos Parceiros</a></li>
                     <li role="none"><a role="menuitem" href="cadastro.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors border-b-2 border-ong-primary" aria-current="page">Cadastre-se</a></li>
                     <li role="none">
                         <a role="menuitem" href="cadastro.html" class="btn-primary text-white bg-ong-primary hover:bg-ong-primary-dark px-4 py-2 rounded-full font-semibold transition-colors shadow-md">Seja Voluntário</a>
@@ -77,7 +82,8 @@
                 <h2 id="form-titulo" class="text-3xl font-bold text-ong-primary mb-6">Registro de Voluntário/Membro</h2>
                 
                 <!-- Formulário Completo com Validação Nativa e Agrupamento Lógico -->
-                <form action="#" method="POST" onsubmit="alert('Formulário enviado com sucesso! (Simulação)'); return true;" class="space-y-6">
+                <!-- A validação JS será acionada pelo evento 'submit' -->
+                <form id="form-principal" action="#" method="POST" onsubmit="return validarConsistencia(event)" class="space-y-6">
                     
                     <!-- Dados Pessoais (Agrupamento Lógico) -->
                     <fieldset class="border border-gray-300 p-6 rounded-lg space-y-4">
@@ -101,14 +107,16 @@
                             <!-- CPF (Máscara de 11 dígitos, Apenas números) -->
                             <div>
                                 <label for="cpf" class="block font-medium text-gray-700">CPF <span class="text-red-500">*</span></label>
-                                <input type="text" id="cpf" name="cpf" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" maxlength="14" class="w-full p-3 border rounded-md focus:border-ong-primary" aria-required="true" aria-label="CPF">
+                                <input type="text" id="cpf" name="cpf" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" maxlength="14" class="w-full p-3 border rounded-md focus:border-ong-primary" aria-required="true" aria-label="CPF" data-validation-type="cpf">
                                 <small class="text-gray-500 text-xs mt-1 block">Formato: 000.000.000-00</small>
+                                <div id="error-cpf" class="validation-message hidden">Formato de CPF inválido.</div>
                             </div>
                             
                             <!-- Data de Nascimento -->
                             <div>
                                 <label for="data_nasc" class="block font-medium text-gray-700">Data de Nascimento <span class="text-red-500">*</span></label>
-                                <input type="date" id="data_nasc" name="data_nasc" required class="w-full p-3 border rounded-md focus:border-ong-primary" aria-required="true" aria-label="Data de Nascimento">
+                                <input type="date" id="data_nasc" name="data_nasc" required class="w-full p-3 border rounded-md focus:border-ong-primary" aria-required="true" aria-label="Data de Nascimento" data-validation-type="date">
+                                <div id="error-data_nasc" class="validation-message hidden">Você deve ter pelo menos 16 anos.</div>
                             </div>
                         </div>
                         
@@ -149,7 +157,8 @@
                             <!-- Estado -->
                             <div>
                                 <label for="estado" class="block font-medium text-gray-700">Estado <span class="text-red-500">*</span></label>
-                                <input type="text" id="estado" name="estado" required maxlength="2" placeholder="Ex: SP" class="w-full p-3 border rounded-md focus:border-ong-primary" aria-required="true" aria-label="Estado">
+                                <input type="text" id="estado" name="estado" required maxlength="2" pattern="[A-Z]{2}" placeholder="Ex: SP" class="w-full p-3 border rounded-md focus:border-ong-primary" aria-required="true" aria-label="Estado">
+                                <div id="error-estado" class="validation-message hidden">Use apenas 2 letras maiúsculas (Ex: SP).</div>
                             </div>
                         </div>
                     </fieldset>
@@ -192,68 +201,99 @@
         </div>
     </footer>
 
-    <!-- Script para Menu Mobile e Dropdown (Duplicado em todos os HTMLs) -->
+    <!-- Scripts da Aplicação (Deve vir no final do BODY) -->
+    <script src="assets/js/app.js"></script>
+    
+    <!-- Código JS de Máscaras e Validação (Validação de Consistência) -->
     <script>
-        function toggleMenu() {
-            const nav = document.getElementById('main-nav');
-            const iconMenu = document.getElementById('icon-menu');
-            const iconClose = document.getElementById('icon-close');
-            const isMenuOpen = nav.classList.toggle('menu-open');
-            
-            iconMenu.classList.toggle('hidden', isMenuOpen);
-            iconClose.classList.toggle('hidden', !isMenuOpen);
-            document.querySelector('.hamburger-button').setAttribute('aria-expanded', isMenuOpen);
-
-            if (isMenuOpen) {
-                // Adiciona a classe que move o menu na tela (definida no CSS)
-                nav.style.right = '0';
-            } else {
-                nav.style.right = '-100%';
-            }
-        }
-        
-        // Função para o Dropdown em Mobile (que não é via hover)
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownButton = document.querySelector('.dropdown-container button');
-            const dropdownContainer = document.querySelector('.dropdown-container');
-
-            if (dropdownButton) {
-                dropdownButton.addEventListener('click', function(e) {
-                    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-                    
-                    if (isMobile) {
-                        e.preventDefault(); // Impede a navegação padrão em mobile
-                        dropdownContainer.classList.toggle('active');
-                        const isExpanded = dropdownContainer.classList.contains('active');
-                        dropdownButton.setAttribute('aria-expanded', isExpanded);
-                    }
-                });
-            }
-        });
-        
-        // Aplicação de Máscaras Básicas para Validação Nativa
+        // Funções de Máscara (apenas para UX, a validação principal é via HTML5 pattern)
         document.getElementById('cpf').addEventListener('input', function (e) {
-            var value = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+            var value = e.target.value.replace(/\D/g, ''); 
             if (value.length > 3) value = value.substring(0, 3) + '.' + value.substring(3);
             if (value.length > 7) value = value.substring(0, 7) + '.' + value.substring(7);
             if (value.length > 11) value = value.substring(0, 11) + '-' + value.substring(11);
-            e.target.value = value;
+            e.target.value = value.substring(0, 14); // Limita o tamanho final
         });
 
         document.getElementById('telefone').addEventListener('input', function (e) {
             var value = e.target.value.replace(/\D/g, '');
             if (value.length > 0) value = '(' + value;
             if (value.length > 3) value = value.substring(0, 3) + ') ' + value.substring(3);
-            if (value.length > 10) value = value.substring(0, 10) + '-' + value.substring(10, 14);
+            if (value.length > 9) value = value.substring(0, 9) + '-' + value.substring(9, 14);
             e.target.value = value;
         });
 
         document.getElementById('cep').addEventListener('input', function (e) {
             var value = e.target.value.replace(/\D/g, '');
             if (value.length > 5) value = value.substring(0, 5) + '-' + value.substring(5, 8);
-            e.target.value = value;
+            e.target.value = value.substring(0, 9);
         });
+
+        // ==================================================================
+        // VALIDAÇÃO DE CONSISTÊNCIA AVANÇADA (Requisito da Entrega III)
+        // ==================================================================
+        
+        // Verifica se a pessoa tem pelo menos 16 anos (idade mínima para voluntariado/apoio)
+        function validarIdade(dataNascimento) {
+            if (!dataNascimento) return false;
+            
+            const hoje = new Date();
+            const dataNasc = new Date(dataNascimento);
+            
+            // Calcula a diferença de anos
+            let idade = hoje.getFullYear() - dataNasc.getFullYear();
+            const mes = hoje.getMonth() - dataNasc.getMonth();
+            const dia = hoje.getDate() - dataNasc.getDate();
+
+            // Ajusta se o aniversário ainda não passou este ano
+            if (mes < 0 || (mes === 0 && dia < 0)) {
+                idade--;
+            }
+            
+            // Requisito: Idade mínima de 16 anos
+            return idade >= 16; 
+        }
+        
+        // Função Principal de Validação de Consistência
+        window.validarConsistencia = function(event) {
+            let isValid = true;
+            
+            // Limpa mensagens de erro e classes inválidas
+            document.querySelectorAll('.validation-message').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+
+            // 1. Validação de Idade (Data de Nascimento)
+            const dataNascInput = document.getElementById('data_nasc');
+            if (dataNascInput.value && !validarIdade(dataNascInput.value)) {
+                dataNascInput.classList.add('is-invalid');
+                document.getElementById('error-data_nasc').classList.remove('hidden');
+                isValid = false;
+            }
+
+            // 2. Validação de Formato de Estado (2 letras MAIÚSCULAS)
+            const estadoInput = document.getElementById('estado');
+            // A validação de pattern="[A-Z]{2}" é feita pelo HTML, mas reforçamos a classe de erro aqui:
+            if (estadoInput.value && !estadoInput.checkValidity()) {
+                 estadoInput.classList.add('is-invalid');
+                 document.getElementById('error-estado').classList.remove('hidden');
+                 isValid = false;
+            }
+
+            // Se a validação de consistência falhar, impede o envio do formulário
+            if (!isValid) {
+                event.preventDefault();
+                // Opcional: Rola para o primeiro erro visível
+                document.querySelector('.is-invalid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return false;
+            }
+            
+            // Se o JS passar e o HTML5 passar, exibe a mensagem de sucesso (simulação)
+            event.preventDefault();
+            alert('Formulário de Cadastro Enviado com Sucesso! (Simulação da Entrega III)');
+            return true;
+        }
 
     </script>
 </body>
 </html>
+
