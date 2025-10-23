@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos e Doações | ONG Conecta</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <meta name="description" content="Conheça os projetos sociais da ONG Conecta e veja como doar ou se voluntariar.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos embutidos minimos para inicializacao antes do CSS ser carregado */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #E8F5E9;
+        }
+        .hero { 
+            background-image: linear-gradient(135deg, #3CB371 0%, #1E8449 100%); 
+        } 
+        .text-ong-primary { color: #1E8449; } 
+    </style>
+</head>
+<body>
+    
+    <header class="bg-white/90 backdrop-blur-sm shadow-xl sticky top-0 z-50" role="banner">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-extrabold text-ong-primary" aria-label="ONG Conecta - Página Inicial">ONG Conecta</a>
+            
+            <!-- Botão Hambúrguer -->
+            <button class="hamburger-button text-gray-700 p-2 rounded-md focus:outline-none" aria-label="Abrir Menu Principal" aria-expanded="false" onclick="toggleMenu()">
+                <svg id="icon-menu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <!-- Navegação Principal (Com Dropdown) -->
+            <nav id="main-nav" class="hidden md:flex" role="navigation" aria-label="Menu Principal">
+                <ul role="menubar" class="flex space-x-4 md:space-x-6 items-center">
+                    <li role="none"><a role="menuitem" href="index.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors border-b-2 border-transparent hover:border-ong-primary">Início</a></li>
+                    
+                    <!-- Item com Dropdown -->
+                    <li role="none" class="dropdown-container relative">
+                        <button aria-expanded="true" aria-controls="projetos-submenu" class="text-gray-700 hover:text-ong-primary font-bold transition-colors border-b-2 border-ong-primary" aria-current="page">
+                            Projetos
+                        </button>
+                        <ul id="projetos-submenu" role="menu" class="dropdown-menu block md:absolute">
+                            <li role="none"><a role="menuitem" href="projetos.html" class="dropdown-item">Nossos Projetos</a></li>
+                            <li role="none"><a role="menuitem" href="#" class="dropdown-item">Indicadores de Impacto</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li role="none"><a role="menuitem" href="#parceiros" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">Nossos Parceiros</a></li>
+                    <li role="none"><a role="menuitem" href="cadastro.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">Cadastre-se</a></li>
+                    <li role="none">
+                        <a role="menuitem" href="cadastro.html" class="btn-primary text-white bg-ong-primary hover:bg-ong-primary-dark px-4 py-2 rounded-full font-semibold transition-colors shadow-md">Seja Voluntário</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" role="main" class="py-16">
+        <div class="container mx-auto px-4">
+            
+            <section id="lista-projetos" class="mb-16" role="region" aria-labelledby="projetos-titulo">
+                <h1 id="projetos-titulo" class="text-4xl font-extrabold text-center mb-4 text-gray-800">Projetos de Transformação Social</h1>
+                <p class="text-center max-w-3xl mx-auto mb-12 text-gray-600">Conheça as iniciativas que estamos desenvolvendo e o impacto que geramos no Terceiro Setor e nas comunidades brasileiras.</p>
+                
+                <!-- Layout Responsivo com Grid e Flexbox -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Card de Projeto 1: Inclusão Digital -->
+                    <article class="content-card p-6 border-t-4 border-ong-primary" role="article" aria-labelledby="proj1-titulo">
+                        <h3 id="proj1-titulo" class="text-2xl font-bold text-ong-primary mb-3">Programa Tech-Acessível</h3>
+                        <p class="text-gray-600 mb-4">Focado na doação de dispositivos recondicionados e aulas de informática básica para idosos e comunidades rurais, combatendo a exclusão digital.</p>
+                        <div class="flex items-center space-x-2 mb-4">
+                            <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">#Inclusão</span>
+                            <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">#Educação</span>
+                        </div>
+                        <div class="text-sm font-semibold text-gray-700">Meta: 85% Alcançada</div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
+                            <div class="bg-ong-primary h-2.5 rounded-full" style="width: 85%"></div>
+                        </div>
+                        <a href="#" class="block mt-4 text-center btn-primary">Detalhes e Voluntariado</a>
+                    </article>
+                    
+                    <!-- Card de Projeto 2: Sustentabilidade/TI Verde -->
+                    <article class="content-card p-6 border-t-4 border-ong-secondary" role="article" aria-labelledby="proj2-titulo">
+                        <h3 id="proj2-titulo" class="text-2xl font-bold text-ong-secondary mb-3">Logística Reversa Verde</h3>
+                        <p class="text-gray-600 mb-4">Criação de pontos de coleta de lixo eletrônico em parceria com escolas e ONGs, promovendo o descarte correto e a TI Verde.</p>
+                        <div class="flex items-center space-x-2 mb-4">
+                            <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">#Sustentabilidade</span>
+                            <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">#MeioAmbiente</span>
+                        </div>
+                        <div class="text-sm font-semibold text-gray-700">Meta: 40% Alcançada</div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
+                            <div class="bg-ong-secondary h-2.5 rounded-full" style="width: 40%"></div>
+                        </div>
+                        <a href="#" class="block mt-4 text-center btn-primary">Detalhes e Doação</a>
+                    </article>
+
+                    <!-- Card de Projeto 3: Empreendedorismo -->
+                    <article class="content-card p-6 border-t-4 border-yellow-500" role="article" aria-labelledby="proj3-titulo">
+                        <h3 id="proj3-titulo" class="text-2xl font-bold text-yellow-600 mb-3">Micro-Negócios Digitais</h3>
+                        <p class="text-gray-600 mb-4">Mentoria e cursos para microempreendedores de baixa renda sobre vendas online, marketing digital e formalização MEI.</p>
+                        <div class="flex items-center space-x-2 mb-4">
+                            <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">#Empreendedorismo</span>
+                            <span class="bg-gray-200 text-gray-700 text-sm px-3 py-1 rounded-full">#RendaExtra</span>
+                        </div>
+                        <div class="text-sm font-semibold text-gray-700">Meta: 60% Alcançada</div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1">
+                            <div class="bg-yellow-600 h-2.5 rounded-full" style="width: 60%"></div>
+                        </div>
+                        <a href="#" class="block mt-4 text-center btn-primary">Detalhes e Apoio</a>
+                    </article>
+
+                </div>
+            </section>
+            
+            <section id="doacao" class="bg-white p-10 rounded-xl shadow-2xl mt-16" role="region" aria-labelledby="doacao-titulo">
+                <h2 id="doacao-titulo" class="text-3xl font-bold text-center mb-8 text-gray-800">Faça Sua Doação e Transforme Vidas</h2>
+                <div class="max-w-xl mx-auto">
+                    <p class="text-gray-600 text-center mb-6">Sua contribuição garante a continuidade dos nossos projetos de capacitação e inclusão digital nas comunidades mais necessitadas.</p>
+                    
+                    <form action="#" method="POST" class="space-y-4">
+                        <fieldset class="border border-gray-300 p-4 rounded-lg">
+                            <legend class="font-semibold text-lg text-ong-primary px-2">Valor da Doação</legend>
+                            <label for="valor-doacao" class="block mt-2 font-medium text-gray-700">R$</label>
+                            <input type="number" id="valor-doacao" name="valor-doacao" value="50.00" min="10.00" step="5.00" required class="form-input w-full p-3 border-2 border-gray-300 rounded-lg text-2xl font-bold focus:border-ong-primary" aria-label="Valor da doação em Reais">
+                        </fieldset>
+                        
+                        <fieldset class="border border-gray-300 p-4 rounded-lg">
+                            <legend class="font-semibold text-lg text-ong-primary px-2">Informações Pessoais</legend>
+                            <label for="nome" class="block mt-2 font-medium text-gray-700">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" required class="w-full p-2 border rounded-md focus:border-ong-primary">
+                        </fieldset>
+                        
+                        <button type="submit" class="w-full bg-ong-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-ong-primary-dark transition-colors text-lg shadow-md">
+                            Doar Agora e Gerar Impacto
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 text-center" role="contentinfo">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 ONG Conecta. Todos os direitos reservados. | 
+                <a href="#" class="text-blue-300 hover:underline" aria-label="Acessar Termos de Uso">Termos de Uso</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Script para Menu Mobile e Dropdown (Duplicado em todos os HTMLs) -->
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('main-nav');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
+            const isMenuOpen = nav.classList.toggle('menu-open');
+            
+            iconMenu.classList.toggle('hidden', isMenuOpen);
+            iconClose.classList.toggle('hidden', !isMenuOpen);
+            document.querySelector('.hamburger-button').setAttribute('aria-expanded', isMenuOpen);
+
+            if (isMenuOpen) {
+                // Adiciona a classe que move o menu na tela (definida no CSS)
+                nav.style.right = '0';
+            } else {
+                nav.style.right = '-100%';
+            }
+        }
+        
+        // Função para o Dropdown em Mobile (que não é via hover)
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownButton = document.querySelector('.dropdown-container button');
+            const dropdownContainer = document.querySelector('.dropdown-container');
+
+            if (dropdownButton) {
+                dropdownButton.addEventListener('click', function(e) {
+                    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+                    
+                    if (isMobile) {
+                        // Permite que o link "Projetos" seja clicado para abrir o submenu no mobile
+                        e.preventDefault(); 
+                        dropdownContainer.classList.toggle('active');
+                        const isExpanded = dropdownContainer.classList.contains('active');
+                        dropdownButton.setAttribute('aria-expanded', isExpanded);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
