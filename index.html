@@ -32,7 +32,7 @@
             <a href="index.html" class="text-2xl font-extrabold text-ong-primary" aria-label="ONG Conecta - Página Inicial">ONG Conecta</a>
             
             <!-- Botão Hambúrguer (Visível apenas em Mobile - max-width: 768px) -->
-            <button class="hamburger-button text-gray-700 p-2 rounded-md focus:outline-none" aria-label="Abrir Menu Principal" aria-expanded="false" onclick="toggleMenu()">
+            <button class="hamburger-button text-gray-700 p-2 rounded-md focus:outline-none md:hidden" aria-label="Abrir Menu Principal" aria-expanded="false" onclick="toggleMenu()">
                 <svg id="icon-menu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                 <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
@@ -42,7 +42,7 @@
                 <ul role="menubar" class="flex space-x-4 md:space-x-6 items-center">
                     <li role="none"><a role="menuitem" href="index.html" class="text-gray-700 hover:text-ong-primary font-bold transition-colors border-b-2 border-transparent hover:border-ong-primary" aria-current="page">Início</a></li>
                     
-                    <!-- Item com Dropdown (Agora apenas o texto "Projetos" no menu principal) -->
+                    <!-- Item com Dropdown (Container com position: relative) -->
                     <li role="none" class="dropdown-container relative">
                         <button aria-expanded="false" aria-controls="projetos-submenu" class="text-gray-700 hover:text-ong-primary font-bold transition-colors">
                             Projetos
@@ -93,7 +93,6 @@
             <article class="bg-white p-6 rounded-xl shadow-xl text-center card-shadow" role="article">
                 <h2 class="text-3xl font-bold text-ong-primary mb-3">Conquistas</h2>
                 <p class="text-gray-600">Mais de 50 ONGs cadastradas e R$ 100k captados no primeiro ano de operação. Nosso impacto cresce diariamente!</p>
-            </p>
             </article>
         </section>
         
@@ -172,7 +171,7 @@
 
         
 
-<section id="parceiros-secao" class="container mx-auto py-16 px-4" role="region" aria-labelledby="parceiros-titulo">
+<section id="parceiros" class="container mx-auto py-16 px-4" role="region" aria-labelledby="parceiros-titulo">
             <h2 id="parceiros-titulo" class="text-4xl font-extrabold text-center mb-12 text-gray-800">Nossos Parceiros Estratégicos</h2>
             <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-2xl card-shadow border-t-4 border-ong-primary">
                 <h3 class="text-3xl font-bold text-ong-primary mb-4">Projeto Conecta+ SPA (Inclusão Digital)</h3>
@@ -274,94 +273,6 @@
     </footer>
 
     <!-- Script para Calculadora de Impacto e Menu Mobile -->
-    <script>
-        // Função da Calculadora de Impacto
-        function calcularImpacto() {
-            const valorInput = document.getElementById('doacao-valor');
-            const resultadoElement = document.getElementById('resultado-impacto');
-            const valor = parseFloat(valorInput.value);
-
-            if (isNaN(valor) || valor <= 0) {
-                resultadoElement.textContent = 'Por favor, insira um valor válido.';
-                return;
-            }
-
-            // Regras de Impacto Fictícias (para simular a métrica da ONG)
-            const custo_mentoria_hora = 2.5; // R$ 2.50 por hora de mentoria
-            const custo_kit_basico = 50.0; // R$ 50.00 = 1 kit básico de higiene e materiais
-
-            let impactoTexto = "";
-
-            if (valor < 50) {
-                const horas = Math.floor(valor / custo_mentoria_hora);
-                impactoTexto = `Sua doação de R$ ${valor.toFixed(2)} pode financiar **${horas} horas de mentoria** para um iniciante digital.`;
-            } else if (valor >= 50 && valor < 200) {
-                const kits = Math.floor(valor / custo_kit_basico);
-                const horas = Math.floor((valor % custo_kit_basico) / custo_mentoria_hora);
-                impactoTexto = `Sua doação de R$ ${valor.toFixed(2)} garante **${kits} kits básicos** e **${horas} horas de mentoria**.`;
-            } else {
-                impactoTexto = `Sua doação de R$ ${valor.toFixed(2)} gera um **impacto profundo**, garantindo capacitação completa para **várias famílias** por um mês.`;
-            }
-
-            resultadoElement.innerHTML = impactoTexto.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
-        }
-
-        // Função do Menu Hambúrguer (Mobile)
-        function toggleMenu() {
-            const nav = document.getElementById('main-nav');
-            const iconMenu = document.getElementById('icon-menu');
-            const iconClose = document.getElementById('icon-close');
-            const isMenuOpen = nav.classList.toggle('menu-open');
-            
-            // Alterna os ícones do botão
-            iconMenu.classList.toggle('hidden', isMenuOpen);
-            iconClose.classList.toggle('hidden', !isMenuOpen);
-            
-            // Atualiza o atributo ARIA
-            document.querySelector('.hamburger-button').setAttribute('aria-expanded', isMenuOpen);
-
-            // Adiciona/remove evento de clique para fechar o menu ao clicar em um link
-            if (isMenuOpen) {
-                nav.addEventListener('click', closeMenuOnLinkClick);
-            } else {
-                nav.removeEventListener('click', closeMenuOnLinkClick);
-            }
-        }
-        
-        // Fecha o menu ao clicar em um link
-        function closeMenuOnLinkClick(event) {
-            if (event.target.tagName === 'A' || event.target.tagName === 'BUTTON') {
-                // Pequeno delay para permitir a navegação/ação antes de fechar
-                setTimeout(toggleMenu, 100); 
-            }
-        }
-
-        // Função do Dropdown Mobile
-        // Esta função permite que o link "Projetos" no mobile seja clicado para abrir o submenu
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownButton = document.querySelector('.dropdown-container button');
-            const dropdownContainer = document.querySelector('.dropdown-container');
-
-            if (dropdownButton) {
-                dropdownButton.addEventListener('click', function(e) {
-                    // Verifica se está em modo mobile (usando a media query do CSS como proxy)
-                    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-                    
-                    if (isMobile) {
-                        e.preventDefault(); // Impede a navegação padrão em mobile
-                        dropdownContainer.classList.toggle('active');
-                        const isExpanded = dropdownContainer.classList.contains('active');
-                        dropdownButton.setAttribute('aria-expanded', isExpanded);
-                    }
-                    // Em desktop, o hover funciona via CSS, então não faz nada aqui
-                });
-            }
-        });
-
-        // Inicializar a calculadora no carregamento da página
-        window.onload = function() {
-            calcularImpacto();
-        };
-    </script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
