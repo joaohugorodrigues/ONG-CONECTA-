@@ -108,7 +108,7 @@ function validarConsistencia(event) {
         return false;
     }
     
-    // Se tudo passar, simula o envio
+    // 5. Se tudo passar, simula o envio
     event.preventDefault();
     alert('Formulário de Cadastro Enviado com Sucesso! (Simulação da Entrega III)');
     return true;
@@ -195,6 +195,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('cpf').addEventListener('input', aplicarMascaraCPF);
         document.getElementById('telefone').addEventListener('input', aplicarMascaraTelefone);
         document.getElementById('cep').addEventListener('input', aplicarMascaraCEP);
+        
+        // Adiciona event listener para a validação de consistência ao enviar o formulário
+        const form = document.getElementById('form-principal');
+        if (form) {
+            form.addEventListener('submit', validarConsistencia);
+        }
     }
 
     // Lógica para fechar o menu mobile ao clicar em um link
@@ -214,7 +220,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Garante que a função toggleMenu esteja acessível globalmente (chamada pelo onclick do HTML)
+// Garante que as funções essenciais estejam acessíveis globalmente (chamada pelo onclick do HTML)
 window.toggleMenu = toggleMenu;
 window.toggleTheme = toggleTheme; 
-window.validarConsistencia = validarConsistencia; // Essencial para o onsubmit do cadastro.html
+window.validarConsistencia = validarConsistencia;
