@@ -82,7 +82,7 @@
                 <h2 id="form-titulo" class="text-3xl font-bold text-ong-primary mb-6">Registro de Voluntário/Membro</h2>
                 
                 <!-- Formulário Completo com Validação Nativa e Agrupamento Lógico -->
-                <!-- A validação JS será acionada pelo evento 'submit' -->
+                <!-- A validação de consistência será chamada pela função 'validarConsistencia(event)' no app.js -->
                 <form id="form-principal" action="#" method="POST" onsubmit="return validarConsistencia(event)" class="space-y-6">
                     
                     <!-- Dados Pessoais (Agrupamento Lógico) -->
@@ -202,98 +202,7 @@
     </footer>
 
     <!-- Scripts da Aplicação (Deve vir no final do BODY) -->
+    <!-- Este script app.js contém a lógica de navegação, temas e validação do formulário. -->
     <script src="assets/js/app.js"></script>
-    
-    <!-- Código JS de Máscaras e Validação (Validação de Consistência) -->
-    <script>
-        // Funções de Máscara (apenas para UX, a validação principal é via HTML5 pattern)
-        document.getElementById('cpf').addEventListener('input', function (e) {
-            var value = e.target.value.replace(/\D/g, ''); 
-            if (value.length > 3) value = value.substring(0, 3) + '.' + value.substring(3);
-            if (value.length > 7) value = value.substring(0, 7) + '.' + value.substring(7);
-            if (value.length > 11) value = value.substring(0, 11) + '-' + value.substring(11);
-            e.target.value = value.substring(0, 14); // Limita o tamanho final
-        });
-
-        document.getElementById('telefone').addEventListener('input', function (e) {
-            var value = e.target.value.replace(/\D/g, '');
-            if (value.length > 0) value = '(' + value;
-            if (value.length > 3) value = value.substring(0, 3) + ') ' + value.substring(3);
-            if (value.length > 9) value = value.substring(0, 9) + '-' + value.substring(9, 14);
-            e.target.value = value;
-        });
-
-        document.getElementById('cep').addEventListener('input', function (e) {
-            var value = e.target.value.replace(/\D/g, '');
-            if (value.length > 5) value = value.substring(0, 5) + '-' + value.substring(5, 8);
-            e.target.value = value.substring(0, 9);
-        });
-
-        // ==================================================================
-        // VALIDAÇÃO DE CONSISTÊNCIA AVANÇADA (Requisito da Entrega III)
-        // ==================================================================
-        
-        // Verifica se a pessoa tem pelo menos 16 anos (idade mínima para voluntariado/apoio)
-        function validarIdade(dataNascimento) {
-            if (!dataNascimento) return false;
-            
-            const hoje = new Date();
-            const dataNasc = new Date(dataNascimento);
-            
-            // Calcula a diferença de anos
-            let idade = hoje.getFullYear() - dataNasc.getFullYear();
-            const mes = hoje.getMonth() - dataNasc.getMonth();
-            const dia = hoje.getDate() - dataNasc.getDate();
-
-            // Ajusta se o aniversário ainda não passou este ano
-            if (mes < 0 || (mes === 0 && dia < 0)) {
-                idade--;
-            }
-            
-            // Requisito: Idade mínima de 16 anos
-            return idade >= 16; 
-        }
-        
-        // Função Principal de Validação de Consistência
-        window.validarConsistencia = function(event) {
-            let isValid = true;
-            
-            // Limpa mensagens de erro e classes inválidas
-            document.querySelectorAll('.validation-message').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
-
-            // 1. Validação de Idade (Data de Nascimento)
-            const dataNascInput = document.getElementById('data_nasc');
-            if (dataNascInput.value && !validarIdade(dataNascInput.value)) {
-                dataNascInput.classList.add('is-invalid');
-                document.getElementById('error-data_nasc').classList.remove('hidden');
-                isValid = false;
-            }
-
-            // 2. Validação de Formato de Estado (2 letras MAIÚSCULAS)
-            const estadoInput = document.getElementById('estado');
-            // A validação de pattern="[A-Z]{2}" é feita pelo HTML, mas reforçamos a classe de erro aqui:
-            if (estadoInput.value && !estadoInput.checkValidity()) {
-                 estadoInput.classList.add('is-invalid');
-                 document.getElementById('error-estado').classList.remove('hidden');
-                 isValid = false;
-            }
-
-            // Se a validação de consistência falhar, impede o envio do formulário
-            if (!isValid) {
-                event.preventDefault();
-                // Opcional: Rola para o primeiro erro visível
-                document.querySelector('.is-invalid').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                return false;
-            }
-            
-            // Se o JS passar e o HTML5 passar, exibe a mensagem de sucesso (simulação)
-            event.preventDefault();
-            alert('Formulário de Cadastro Enviado com Sucesso! (Simulação da Entrega III)');
-            return true;
-        }
-
-    </script>
 </body>
 </html>
-
